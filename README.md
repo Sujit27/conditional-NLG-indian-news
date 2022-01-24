@@ -17,4 +17,6 @@ Download all files from [here](https://drive.google.com/drive/u/0/folders/1Eg5r7
 `python generate.py`
 
 ## Sample output
-![output](https://github.com/Sujit27/conditional-NLG-indian-news/blob/main/text_generation_sample.png)
+![output_sample_1](https://github.com/Sujit27/conditional-NLG-indian-news/blob/main/text_generation_sample.png)
+
+![output_sample_2](https://github.com/Sujit27/conditional-NLG-indian-news/blob/main/text_generation_sample_2.png)
