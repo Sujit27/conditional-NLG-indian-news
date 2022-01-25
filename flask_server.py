@@ -15,13 +15,10 @@ model = get_model(tokenizer, special_tokens=SPECIAL_TOKENS,load_model_path=os.pa
 @cross_origin()
 def gen_text():
     body = request.get_json()
-    input_headline = str(body["headline"])
-    input_keystring = str(body["keystring"])
-    try:
-        input_keywords = body["keywords"]
-        print(input_keywords)
-    except:
-        input_keywords = str(body["keystring"]).split(",")
+    input_headline = body["headline"]
+    input_keywords = body["keywords"]
+    if isinstance(input_keywords, str): 
+        input_keywords = input_keywords.split(",")
     
     output = generate_text(input_headline,input_keywords,model,tokenizer)
     text = tokenizer.decode(output[0], skip_special_tokens=True)
