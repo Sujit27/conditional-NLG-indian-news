@@ -7,8 +7,10 @@ app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+print("Loading models...")
 tokenizer = get_tokenier(special_tokens=SPECIAL_TOKENS)
 model = get_model(tokenizer, special_tokens=SPECIAL_TOKENS,load_model_path=os.path.join(MODEL,'pytorch_model.bin'))
+print("Models loaded")
 
 
 @app.route('/generate_text', methods=['POST'])
@@ -20,6 +22,7 @@ def gen_text():
     if isinstance(input_keywords, str): 
         input_keywords = input_keywords.split(",")
     
+    print("Generating text...")
     output = generate_text(input_headline,input_keywords,model,tokenizer)
     text = tokenizer.decode(output[0], skip_special_tokens=True)
     strip_len = len(input_headline) + len(','.join(input_keywords))  
@@ -33,4 +36,4 @@ def gen_text():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run(host="0.0.0.0", port=5001, debug=True,use_reloader=False)
